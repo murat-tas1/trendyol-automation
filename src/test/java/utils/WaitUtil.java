@@ -1,7 +1,7 @@
 package utils;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -52,7 +52,13 @@ public class WaitUtil {
             try {
                 webDriver.findElement(locator).click();
                 return true;
-            } catch (ElementClickInterceptedException | StaleElementReferenceException | NoSuchElementException e) {
+            } catch (ElementNotInteractableException
+                     | StaleElementReferenceException | NoSuchElementException e) {
+                // ElementNotInteractableException (parent of ElementClickInterceptedException, so it
+                // also covers the click-intercepted case) shows up on product-card <a> wrappers whose
+                // clickable geometry briefly settles after lazy-loaded content renders; treat it
+                // as retryable so the wait polls again and, if it never settles, clickWithHoverRecovery
+                // can still fall through to its jsClick fallback.
                 return false;
             }
         });
