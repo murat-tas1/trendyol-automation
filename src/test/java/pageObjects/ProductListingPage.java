@@ -6,41 +6,46 @@ import org.openqa.selenium.WebDriver;
 
 public class ProductListingPage extends BasePage {
 
+    // HTML IDs of the filter checkboxes.
     private static final String SPOR_AYAKKABI_CHECKBOX_ID = "checkbox-web-aggregations-checkbox-WebCategory-109-109";
     private static final String ERKEK_CHECKBOX_ID = "checkbox-web-aggregations-checkbox-WebGender-2-2";
     private static final String SKECHERS_CHECKBOX_ID = "checkbox-web-aggregations-checkbox-WebBrand-658-658";
 
+    // Locator for the brand search input.
     private final By brandSearchInput = By.xpath("//input[contains(@placeholder,'Marka')]");
+
+    // Locator for the onboarding overlay that may block interactions.
     private final By onboardingOverlay = By.cssSelector("div[data-testid='onboarding-overlay']");
-    // Match the real "10 Günün En Düşük Fiyatı" badge by its own data-testid, NOT by
-    // text: the "Son 10 Günün En Düşük Fiyatı" price-history label appears on almost
-    // every card and a text/contains match would wrongly count those too.
+
+    // Locator for the second product with the "10 Günün En Düşük Fiyatı" badge.
+    // Uses the badge's data-testid to avoid matching similar text on other products.
     private final By secondLowestPriceBadgeProductCard = By.xpath(
             "(//a[@data-testid='product-card'][.//*[@data-testid='lowest-price-duration-badge']])[2]");
 
+    // Initializes the ProductListingPage.
     public ProductListingPage(WebDriver driver) {
         super(driver);
     }
 
+    // Applies the "Spor Ayakkabı" filter.
     public void filterBySporAyakkabiCategory() {
         applyCheckboxFilter(SPOR_AYAKKABI_CHECKBOX_ID);
     }
 
+    // Applies the "Erkek" filter.
     public void filterByErkekGender() {
         applyCheckboxFilter(ERKEK_CHECKBOX_ID);
     }
 
+    // Searches for and applies the Skechers brand filter.
     public void filterBySkechersBrand() {
-        // the brand list is virtualized, so search instead of scrolling: narrowing the list
-        // forces the Skechers row to render
         dismissOnboardingOverlayIfPresent();
         type(brandSearchInput, "Skechers");
         applyCheckboxFilter(SKECHERS_CHECKBOX_ID);
     }
 
+    // Opens the second product with the lowest-price badge.
     public ProductDetailPage selectSecondLowestPriceBadgeProduct() {
-        // a coaching overlay dims the grid and intercepts clicks; close it first,
-        // then scroll the card into view so it is actually visible before clicking
         dismissOnboardingOverlayIfPresent();
         scrollUntilVisible(secondLowestPriceBadgeProductCard);
         scrollToElement(secondLowestPriceBadgeProductCard);
@@ -50,25 +55,29 @@ public class ProductListingPage extends BasePage {
         return new ProductDetailPage(driver);
     }
 
+    // Applies a checkbox filter using its HTML ID.
+    // Falls back to JavaScript click if the normal click fails.
     private void applyCheckboxFilter(String checkboxInputId) {
-        // close the dimming coach-mark overlay so the click lands like a real user's,
-        // instead of being intercepted and silently forced through with JavaScript
+
         dismissOnboardingOverlayIfPresent();
 
         By label = By.cssSelector("label[for='" + checkboxInputId + "']");
         By checkboxInput = By.id(checkboxInputId);
+
         scrollToElement(label);
 
         try {
             click(label);
             waitUtil.waitUntilSelected(checkboxInput);
+
         } catch (TimeoutException labelClickDidNotStick) {
-            // custom checkbox UI swallowed the click; dispatch it straight to the input instead
+
             jsClick(checkboxInput);
             waitUtil.waitUntilSelected(checkboxInput);
         }
     }
 
+    // Closes the onboarding overlay if it is visible.
     private void dismissOnboardingOverlayIfPresent() {
         dismissOverlayIfPresent(onboardingOverlay);
     }

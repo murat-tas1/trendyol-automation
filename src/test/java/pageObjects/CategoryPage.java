@@ -11,8 +11,15 @@ public class CategoryPage extends BasePage {
     private final By ayakkabiCategoryCard = By.xpath(
             "//p[normalize-space()='Kategorilerdeki İndirimleri Keşfet']"
                     + "/ancestor::div[@data-testid='banner-slider']"
-                    + "//img[contains(@alt,'Ayakkabı')]/ancestor::a[1]");
+                    + "//img[contains(@alt,'Ayakkabı')]/ancestor::a[1]"); // since img is not clickable we can arrive clickable element a
+/*
+Why not just use
 
+//img[contains(@alt,'Ayakkabı')]/ancestor::a[1]
+Most likely because when you inspected the Trendyol homepage, there were multiple elements related to "Ayakkabı", or you wanted to make the locator resilient to future page changes.
+"I don't just want any Ayakkabı image. I want the Ayakkabı image that belongs to the 'Kategorilerdeki İndirimleri Keşfet' banner slider."
+instead of the longer XPath?
+ */
     // The "Next slide" arrow of that same carousel. When the Ayakkabı card starts
     // off-screen we click this to slide it into view, just like a real user.
     private final By nextArrow = By.xpath(
@@ -23,7 +30,7 @@ public class CategoryPage extends BasePage {
     public CategoryPage(WebDriver driver) {
         super(driver);
     }
-
+    //after we select ayakkabi then we will be in productlistingpage therefore it returns ProductListingPage
     public ProductListingPage selectAyakkabiCategory() {
         slideUntilAyakkabiCardIsVisible();
         click(ayakkabiCategoryCard);
