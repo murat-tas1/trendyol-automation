@@ -42,3 +42,7 @@ build/
 chatlog*.txt
 scratch_*.txt
 *.png
+
+### Python (AI failure-analysis PoC)
+__pycache__/
+*.pyc

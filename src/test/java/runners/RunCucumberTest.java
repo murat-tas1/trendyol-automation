@@ -18,8 +18,11 @@ import org.junit.runner.RunWith;
         // Packages where Cucumber searches for step definitions and hooks.
         glue = {"stepDefinitions", "hooks"},
 
-        // Defines test output format in the console.
-        plugin = {"pretty", "summary"},
+        // Defines test output format.
+        // "pretty" and "summary" print to the console; "json" writes a structured
+        // machine-readable report (including failure stack traces) that the AI
+        // failure-analysis PoC reads to explain why a scenario failed.
+        plugin = {"pretty", "summary", "json:target/cucumber-report.json"},
 
         // Makes console output easier to read by removing unnecessary characters.
         monochrome = true

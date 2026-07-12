@@ -1,0 +1,22 @@
+AI Fail Analizi Raporu - 2026-07-12 16:40
+
+============================================================
+FAIL #1: Add to cart - broken locator
+Adim: And I add the product to the cart
+SINIF: B
+GEREKCE: Test kodu hatalı çünkü locator "button[data-testid='add-to-cart-button']" bulunamadı.
+ONERI: Locator'u doğru olarak güncelleyin veya daha genel bir locator kullanın.
+
+============================================================
+FAIL #2: Category page - timeout
+Adim: And I navigate to Kategorilerdeki Indirimleri Kesfet
+SINIF: C
+GEREKCE: Selenium timeout hatası, belirli bir süre içinde element bulunamadığı için test başarısız oldu.
+ONERI: Test kodunda daha detaylı locator kullanabilirsiniz veya sayfanın yüklenmesini beklemek için bekleme süresini artırabilirsiniz.
+
+============================================================
+FAIL #3: Cart verification - wrong product
+Adim: Then the product should be in the cart
+SINIF: A
+GEREKCE: Uygulama yanlis urunu koymus.
+ONERI: Uygulamanın ürün verilerini güncellemesini kontrol edin.
