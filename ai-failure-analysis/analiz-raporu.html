@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8">
+<title>AI Fail Analiz Raporu</title>
+<style>
+  body { font-family: Segoe UI, Arial, sans-serif; color:#1d2939; margin:32px; background:#fff; }
+  h1 { font-size:22px; margin:0 0 4px; }
+  .alt { color:#667085; font-size:13px; margin-bottom:20px; }
+  .ozet { display:flex; gap:12px; margin-bottom:24px; flex-wrap:wrap; }
+  .ozet-kutu { border:2px solid; border-radius:10px; padding:12px 20px; min-width:120px; }
+  .ozet-sayi { font-size:28px; font-weight:700; }
+  .ozet-ad { font-size:12px; color:#475467; }
+  .kart { border:1px solid #e4e7ec; border-radius:10px; padding:16px; margin-bottom:14px; }
+  .kart-bas { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+  .numara { font-weight:700; color:#475467; }
+  .rozet { color:#fff; font-size:12px; font-weight:600; padding:4px 10px; border-radius:20px; }
+  .senaryo { font-size:16px; font-weight:600; margin-bottom:2px; }
+  .adim { color:#667085; font-size:13px; margin-bottom:10px; }
+  .satir { font-size:14px; margin:4px 0; }
+  .etki { font-size:13px; margin:6px 0; color:#475467; }
+  .etki summary { cursor:pointer; font-weight:600; }
+  .etki ul { margin:6px 0 0 18px; padding:0; }
+  .etki li { margin:2px 0; }
+</style></head>
+<body>
+  <h1>Yapay Zeka Destekli Test Fail Analizi</h1>
+  <div class="alt">Oluşturulma: 2026-07-15 17:24 · 12 fail, 9 benzersiz hata tipi · Model: qwen2.5-coder:3b</div>
+  <div class="ozet">
+        <div class="ozet-kutu" style="background:#fef3f2;border-color:#d92d20">
+            <div class="ozet-sayi" style="color:#d92d20">3</div>
+            <div class="ozet-ad">A · URUN HATASI</div>
+        </div>
+        <div class="ozet-kutu" style="background:#fffaeb;border-color:#b54708">
+            <div class="ozet-sayi" style="color:#b54708">4</div>
+            <div class="ozet-ad">B · TEST KODU HATASI</div>
+        </div>
+        <div class="ozet-kutu" style="background:#ecfdf3;border-color:#067647">
+            <div class="ozet-sayi" style="color:#067647">5</div>
+            <div class="ozet-ad">C · ORTAM HATASI</div>
+        </div></div>
+  
+        <div class="kart">
+            <div class="kart-bas">
+                <span class="numara">HATA GRUBU #1</span>
+                <span class="rozet" style="background:#d92d20">A · URUN HATASI</span>
+            </div>
+            <div class="senaryo">Odeme dogrulama testi</div>
+            <div class="adim">Çöken adım: Then the total price should be correct</div>
+            <div class="adim">1 testi etkiliyor</div>
+            <div class="satir"><b>Gerekçe:</b> Uygulama yanlis urunu koymus ve beklenen &quot;150.00&quot; ama gelen &quot;175.00&quot; tutarini veriyor.</div>
+            <div class="satir"><b>Öneri:</b> Uygulamanın ürünlerin doğru şekilde eklenmesini kontrol etmek için ürün listesindeki ürünlerin fiyatlarını doğrulayabilirsiniz.</div>
+        </div>
+        <div class="kart">
+            <div class="kart-bas">
+                <span class="numara">HATA GRUBU #2</span>
+                <span class="rozet" style="background:#d92d20">A · URUN HATASI</span>
+            </div>
+            <div class="senaryo">Sepetten urun silme</div>
+            <div class="adim">Çöken adım: Then the cart should be empty</div>
+            <div class="adim">1 testi etkiliyor</div>
+            <div class="satir"><b>Gerekçe:</b> Uygulama yanlis urunu koymus ve sepette 1 ürün var ama beklenen 0 ürün olmalı.</div>
+            <div class="satir"><b>Öneri:</b> Sepetin temizlenmesini kontrol edin. Sepetin dolu olup olmadığını doğrulayın.</div>
+        </div>
+        <div class="kart">
+            <div class="kart-bas">
+                <span class="numara">HATA GRUBU #3</span>
+                <span class="rozet" style="background:#d92d20">A · URUN HATASI</span>
+            </div>
+            <div class="senaryo">Cart verification - wrong product</div>
+            <div class="adim">Çöken adım: Then the product should be in the cart</div>
+            <div class="adim">1 testi etkiliyor</div>
+            <div class="satir"><b>Gerekçe:</b> Uygulama yanlis urunu koymus.</div>
+            <div class="satir"><b>Öneri:</b> Uygulamanın ürün verilerini güncellemesini kontrol edin.</div>
+        </div>
+        <div class="kart">
+            <div class="kart-bas">
+                <span class="numara">HATA GRUBU #4</span>
+                <span class="rozet" style="background:#b54708">B · TEST KODU HATASI</span>
+            </div>
+            <div class="senaryo">Sepete ekleme testi 1</div>
+            <div class="adim">Çöken adım: And I add the product to the cart</div>
+            <details class="etki"><summary>2 testi etkiliyor</summary><ul><li>Sepete ekleme testi 1</li><li>Sepete ekleme testi 2</li></ul></details>
+            <div class="satir"><b>Gerekçe:</b> Test kodu hatalı çünkü locator &quot;button[data-testid=&#x27;add-to-cart&#x27;]&quot; bulunamadı.</div>
+            <div class="satir"><b>Öneri:</b> Locator&#x27;i doğru olarak güncelleyin veya daha genel bir locator kullanın.</div>
+        </div>
+        <div class="kart">
+            <div class="kart-bas">
+                <span class="numara">HATA GRUBU #5</span>
+                <span class="rozet" style="background:#b54708">B · TEST KODU HATASI</span>
+            </div>
+            <div class="senaryo">Basarisiz giris - yanlis sifre</div>
+            <div class="adim">Çöken adım: Then I should see an error message</div>
+            <div class="adim">1 testi etkiliyor</div>
+            <div class="satir"><b>Gerekçe:</b> Test kodu hatalı çünkü locator &quot;div.error-message&quot; bulunamadı.</div>
+            <div class="satir"><b>Öneri:</b> Locator&#x27;i doğru olarak güncelleyin veya daha genel bir locator kullanın.</div>
+        </div>
+        <div class="kart">
+            <div class="kart-bas">
+                <span class="numara">HATA GRUBU #6</span>
+                <span class="rozet" style="background:#b54708">B · TEST KODU HATASI</span>
+            </div>
+            <div class="senaryo">Add to cart - broken locator</div>
+            <div class="adim">Çöken adım: And I add the product to the cart</div>
+            <div class="adim">1 testi etkiliyor</div>
+            <div class="satir"><b>Gerekçe:</b> Test kodu hatalı çünkü locator &quot;button[data-testid=&#x27;add-to-cart-button&#x27;]&quot; bulunamadı.</div>
+            <div class="satir"><b>Öneri:</b> Locator&#x27;i doğru olarak güncelleyin veya daha genel bir locator kullanın.</div>
+        </div>
+        <div class="kart">
+            <div class="kart-bas">
+                <span class="numara">HATA GRUBU #7</span>
+                <span class="rozet" style="background:#067647">C · ORTAM HATASI</span>
+            </div>
+            <div class="senaryo">Login testi 1</div>
+            <div class="adim">Çöken adım: When I open the login page</div>
+            <details class="etki"><summary>3 testi etkiliyor</summary><ul><li>Login testi 1</li><li>Login testi 2</li><li>Login testi 3</li></ul></details>
+            <div class="satir"><b>Gerekçe:</b> Selenium testi sırasında belirli bir süre içinde element bulunamadığı için TimeoutException hatası alındı. Bu, buyuk bir süre beklediği için bu durum ortam hattasına düşüyor.</div>
+            <div class="satir"><b>Öneri:</b> Test kodunda daha fazla bekleme süresi veya locator&#x27;un doğru olduğundan emin olun.</div>
+        </div>
+        <div class="kart">
+            <div class="kart-bas">
+                <span class="numara">HATA GRUBU #8</span>
+                <span class="rozet" style="background:#067647">C · ORTAM HATASI</span>
+            </div>
+            <div class="senaryo">Urun arama sonuc listesi</div>
+            <div class="adim">Çöken adım: When I search for a product</div>
+            <div class="adim">1 testi etkiliyor</div>
+            <div class="satir"><b>Gerekçe:</b> Selenium timeout hatası, arama sonucu listesi görünmesi için 10 saniye beklendi ama süre doldu.</div>
+            <div class="satir"><b>Öneri:</b> Arama işleminden sonra daha fazla zaman ayarlayabilirsiniz veya locator&#x27;ı daha belirgin yapabilirsiniz.</div>
+        </div>
+        <div class="kart">
+            <div class="kart-bas">
+                <span class="numara">HATA GRUBU #9</span>
+                <span class="rozet" style="background:#067647">C · ORTAM HATASI</span>
+            </div>
+            <div class="senaryo">Category page - timeout</div>
+            <div class="adim">Çöken adım: And I navigate to Kategorilerdeki Indirimleri Kesfet</div>
+            <div class="adim">1 testi etkiliyor</div>
+            <div class="satir"><b>Gerekçe:</b> Selenium timeout hatası, belirli bir süre içinde element bulunamadığı için test başarısız oldu.</div>
+            <div class="satir"><b>Öneri:</b> Test kodunda daha detaylı locator kullanabilirsiniz veya sayfanın yüklenmesini beklemek için bekleme süresini artırabilirsiniz.</div>
+        </div>
+</body></html>

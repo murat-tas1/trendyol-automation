@@ -1,22 +1,64 @@
-AI Fail Analizi Raporu - 2026-07-12 16:40
+AI Fail Analizi Raporu - 2026-07-15 17:23
 
 ============================================================
-FAIL #1: Add to cart - broken locator
-Adim: And I add the product to the cart
+HATA GRUBU #1 (3 testi etkiliyor)
+Temsilci: Login testi 1 | Adim: When I open the login page
+SINIF: C
+GEREKCE: Selenium testi sırasında belirli bir süre içinde element bulunamadığı için TimeoutException hatası alındı. Bu, buyuk bir süre beklediği için bu durum ortam hattasına düşüyor.
+ONERI: Test kodunda daha fazla bekleme süresi veya locator'un doğru olduğundan emin olun.
+
+============================================================
+HATA GRUBU #2 (2 testi etkiliyor)
+Temsilci: Sepete ekleme testi 1 | Adim: And I add the product to the cart
+SINIF: B
+GEREKCE: Test kodu hatalı çünkü locator "button[data-testid='add-to-cart']" bulunamadı.
+ONERI: Locator'i doğru olarak güncelleyin veya daha genel bir locator kullanın.
+
+============================================================
+HATA GRUBU #3 (1 testi etkiliyor)
+Temsilci: Odeme dogrulama testi | Adim: Then the total price should be correct
+SINIF: A
+GEREKCE: Uygulama yanlis urunu koymus ve beklenen "150.00" ama gelen "175.00" tutarini veriyor.
+ONERI: Uygulamanın ürünlerin doğru şekilde eklenmesini kontrol etmek için ürün listesindeki ürünlerin fiyatlarını doğrulayabilirsiniz.
+
+============================================================
+HATA GRUBU #4 (1 testi etkiliyor)
+Temsilci: Basarisiz giris - yanlis sifre | Adim: Then I should see an error message
+SINIF: B
+GEREKCE: Test kodu hatalı çünkü locator "div.error-message" bulunamadı.
+ONERI: Locator'i doğru olarak güncelleyin veya daha genel bir locator kullanın.
+
+============================================================
+HATA GRUBU #5 (1 testi etkiliyor)
+Temsilci: Sepetten urun silme | Adim: Then the cart should be empty
+SINIF: A
+GEREKCE: Uygulama yanlis urunu koymus ve sepette 1 ürün var ama beklenen 0 ürün olmalı.
+ONERI: Sepetin temizlenmesini kontrol edin. Sepetin dolu olup olmadığını doğrulayın.
+
+============================================================
+HATA GRUBU #6 (1 testi etkiliyor)
+Temsilci: Urun arama sonuc listesi | Adim: When I search for a product
+SINIF: C
+GEREKCE: Selenium timeout hatası, arama sonucu listesi görünmesi için 10 saniye beklendi ama süre doldu.
+ONERI: Arama işleminden sonra daha fazla zaman ayarlayabilirsiniz veya locator'ı daha belirgin yapabilirsiniz.
+
+============================================================
+HATA GRUBU #7 (1 testi etkiliyor)
+Temsilci: Add to cart - broken locator | Adim: And I add the product to the cart
 SINIF: B
 GEREKCE: Test kodu hatalı çünkü locator "button[data-testid='add-to-cart-button']" bulunamadı.
-ONERI: Locator'u doğru olarak güncelleyin veya daha genel bir locator kullanın.
+ONERI: Locator'i doğru olarak güncelleyin veya daha genel bir locator kullanın.
 
 ============================================================
-FAIL #2: Category page - timeout
-Adim: And I navigate to Kategorilerdeki Indirimleri Kesfet
+HATA GRUBU #8 (1 testi etkiliyor)
+Temsilci: Category page - timeout | Adim: And I navigate to Kategorilerdeki Indirimleri Kesfet
 SINIF: C
 GEREKCE: Selenium timeout hatası, belirli bir süre içinde element bulunamadığı için test başarısız oldu.
 ONERI: Test kodunda daha detaylı locator kullanabilirsiniz veya sayfanın yüklenmesini beklemek için bekleme süresini artırabilirsiniz.
 
 ============================================================
-FAIL #3: Cart verification - wrong product
-Adim: Then the product should be in the cart
+HATA GRUBU #9 (1 testi etkiliyor)
+Temsilci: Cart verification - wrong product | Adim: Then the product should be in the cart
 SINIF: A
 GEREKCE: Uygulama yanlis urunu koymus.
 ONERI: Uygulamanın ürün verilerini güncellemesini kontrol edin.
